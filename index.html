@@ -24,27 +24,29 @@
 
   <div data-role="main" class="ui-content">
     <p>My Content..</p>
-    <table>
+	
+	<form name="frm" id="subFrom" action="POST">
+	<table >
       <tbody>       
         <tr>
           <td>Name </td>
-          <td><input type="text" ></td>
+          <td><input type="text" name="name"></td>
         </tr>
         <tr>
           <td>Age</td>
-          <td><input type="number" ></td>
+          <td><input type="number" name="age" ></td>
         </tr>
         <tr>
           <td>Email</td>
-          <td><input type="email" ></td>          
+          <td><input type="email" name="email"></td>          
         </tr>
 		<tr>
           <td colspan="2"><input type="submit" value="submit"></td>          
         </tr>
       </tbody>
     </table>
+	</form>
   </div>
-  
   <div data-role="footer">
     <h1>My Footer</h1>
   </div>
@@ -56,4 +58,20 @@
 </script>
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script>
+	$(document).ready(function(){ 
+		$("#subFrom").submit(function(){
+		alert($(this).serialize());
+			$.ajax({ 
+				type : 'POST',
+				data : $(this).serialize(),
+				url : 'http://dev4.technoxponent.com/babzer/student/createStudent',
+				success : function(res)
+				{
+					alert(res);
+				}
+			})
+		});
+	});
+</script>
 </html>
